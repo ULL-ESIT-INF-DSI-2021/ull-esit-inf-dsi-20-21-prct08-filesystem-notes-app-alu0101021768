@@ -36,25 +36,25 @@ export class Notes {
    */
   public listNotes(user: string) {
     const dir = this.getRoute(user);
-    let list = "Your notes\n";
+    let list = "Your notes";
     readdirSync(dir).forEach((file) => {
       const fileData = readFileSync(dir + file);
       const dataToJson = JSON.parse(fileData.toString());
       switch (dataToJson.color) {
         case color.blue:
-          list += chalk.blue(dataToJson.title + "\n");
+          list += chalk.blue("\n" + dataToJson.title);
           break;
         case color.red:
-          list += chalk.red(dataToJson.title + "\n");
+          list += chalk.red("\n" + dataToJson.title);
           break;
         case color.yellow:
-          list += chalk.yellow(dataToJson.title + "\n");
+          list += chalk.yellow("\n" + dataToJson.title);
           break;
         case color.green:
-          list += chalk.green(dataToJson.title + "\n");
+          list += chalk.green("\n" + dataToJson.title);
           break;
         default:
-          list += dataToJson.title + "\n";
+          list += "\n" + dataToJson.title;
           break;
       }
     });
@@ -76,8 +76,7 @@ export class Notes {
     const dir = this.getRoute(user);
     const fileRoute = dir + `${title}`;
     if (existsSync(fileRoute)) {
-      process.stderr.write(chalk.red("Note title taken!\n"));
-      return "Note title taken!\n";
+      return chalk.red("Note title taken!");
       process.exit(-1);
     }
     writeFileSync(fileRoute, data);
@@ -100,8 +99,7 @@ export class Notes {
     const dir = this.getRoute(user);
     const fileRoute = dir + `${title}`;
     if (!existsSync(fileRoute)) {
-      process.stderr.write(chalk.red("Note not found!\n"));
-      return "No note found\n";
+      return chalk.red("Note not found!");
       process.exit(-1);
     }
     writeFileSync(fileRoute, data);
@@ -118,8 +116,7 @@ export class Notes {
     const dir = this.getRoute(user);
     const fileRoute = dir + `${title}`;
     if (!existsSync(fileRoute)) {
-      process.stderr.write(chalk.red("No note found\n"));
-      return "No note found\n";
+      return chalk.red("Note not found!");
       process.exit(-1);
     }
     rmSync(fileRoute);
@@ -135,8 +132,7 @@ export class Notes {
     const dir = this.getRoute(user);
     const fileRoute = dir + `${title}`;
     if (!existsSync(fileRoute)) {
-      process.stderr.write(chalk.red("Note not found\n"));
-      return "Note not found\n";
+      return chalk.red("Note not found!");
       process.exit(-1);
     }
     const fileData = readFileSync(fileRoute);
@@ -144,19 +140,19 @@ export class Notes {
     let result = dataToJson.title + "\n";
     switch (dataToJson.color) {
       case color.blue:
-        result += chalk.blue(dataToJson.body + "\n");
+        result += chalk.blue(dataToJson.body);
         break;
       case color.red:
-        result += chalk.red(dataToJson.body + "\n");
+        result += chalk.red(dataToJson.body);
         break;
       case color.yellow:
-        result += chalk.yellow(dataToJson.body + "\n");
+        result += chalk.yellow(dataToJson.body);
         break;
       case color.green:
-        result += chalk.green(dataToJson.body + "\n");
+        result += chalk.green(dataToJson.body);
         break;
       default:
-        result += dataToJson.body + "\n";
+        result += dataToJson.body;
         break;
     }
     return result;

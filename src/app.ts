@@ -48,11 +48,12 @@ yargs.command({
         color: argv.color as string,
       };
 
-      console.log(chalk.green(notesInstance.addNote(
+      const result = chalk.green(notesInstance.addNote(
           newNote.user,
           newNote.title,
           newNote.body,
-          newNote.color)));
+          newNote.color));
+      console.log(result);
     }
   },
 });
@@ -78,7 +79,8 @@ yargs.command({
   },
   handler(argv) {
     if (typeof argv.user === 'string' && typeof argv.title === 'string') {
-      console.log(notesInstance.readNote(argv.user, argv.title));
+      const result = notesInstance.readNote(argv.user, argv.title);
+      console.log(result);
     }
   },
 });
@@ -124,11 +126,12 @@ yargs.command({
         color: argv.color as string,
       };
 
-      console.log(chalk.green(notesInstance.modifyNote(
+      const result = chalk.green(notesInstance.modifyNote(
           newNote.user,
           newNote.title,
           newNote.body,
-          newNote.color)));
+          newNote.color));
+      console.log(result);
     }
   },
 });
@@ -155,7 +158,9 @@ yargs.command({
   },
   handler(argv) {
     if (typeof argv.user === 'string' && typeof argv.title === 'string') {
-      console.log(chalk.green(notesInstance.removeNote(argv.user, argv.title)));
+      const result = chalk.green(notesInstance
+          .removeNote(argv.user, argv.title));
+      console.log(result);
     }
   },
 });
