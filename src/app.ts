@@ -1,9 +1,18 @@
 import * as yargs from 'yargs';
+import * as chalk from 'chalk';
 import {note} from './helpers';
 import {Notes} from './notes';
 
+/**
+ * @description Notes instance, used to work with all the notes
+ */
 const notesInstance = Notes.getUserNotesInstance();
 
+/**
+ * @description Yargs command snippet for the add option. This command expects
+ * the user, title, body and color of the note. Then it calls the ```addNote```
+ * method from ```Notes``` class passing all the arguments.
+ */
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
@@ -39,14 +48,47 @@ yargs.command({
         color: argv.color as string,
       };
 
-      notesInstance.addNote(
+      console.log(chalk.green(notesInstance.addNote(
           newNote.user,
           newNote.title,
           newNote.body,
-          newNote.color);
+          newNote.color)));
     }
   },
 });
+/**
+ * @description Yargs command snippet for the read option. This command expects
+ * the user and the title of the note. Then it calls the ```readNote```
+ * method from ```Notes``` class passing all the arguments.
+ */
+yargs.command({
+  command: 'read',
+  describe: 'Reads a note',
+  builder: {
+    user: {
+      describe: `Note's list owner`,
+      demandOption: true,
+      type: 'string',
+    },
+    title: {
+      describe: 'Note title',
+      demandOption: true,
+      type: 'string',
+    },
+  },
+  handler(argv) {
+    if (typeof argv.user === 'string' && typeof argv.title === 'string') {
+      console.log(notesInstance.readNote(argv.user, argv.title));
+    }
+  },
+});
+/**
+ * @description Yargs command snippet for the modify option.
+ * This command expects the user and title of the note.
+ * The body and color of the note are optional parameters.
+ * Then it calls the ```modifyNote``` method from ```Notes``` class passing
+ * all the arguments.
+ */
 yargs.command({
   command: 'modify',
   describe: 'Modifies an existing note',
@@ -82,17 +124,23 @@ yargs.command({
         color: argv.color as string,
       };
 
-      notesInstance.modifyNote(
+      console.log(chalk.green(notesInstance.modifyNote(
           newNote.user,
           newNote.title,
           newNote.body,
-          newNote.color);
+          newNote.color)));
     }
   },
 });
+/**
+ * @description Yargs command snippet for the remove option.
+ * This command expects the user and title of the note.
+ * Then it calls the ```removeNote``` method from ```Notes``` class passing
+ * all the arguments.
+ */
 yargs.command({
-  command: 'delete',
-  describe: 'Delete a note',
+  command: 'remove',
+  describe: 'Removes a note',
   builder: {
     user: {
       describe: `Note's list owner`,
@@ -107,10 +155,15 @@ yargs.command({
   },
   handler(argv) {
     if (typeof argv.user === 'string' && typeof argv.title === 'string') {
-      notesInstance.deleteNote(argv.user, argv.title);
+      console.log(chalk.green(notesInstance.removeNote(argv.user, argv.title)));
     }
   },
 });
+/**
+ * @description Yargs command snippet for the list option. This command expects
+ * the user. Then it calls the ```listNotes``` method from ```Notes``` class
+ * passing all the arguments.
+ */
 yargs.command({
   command: 'list',
   describe: 'Lists all the user notes',
@@ -123,8 +176,9 @@ yargs.command({
   },
   handler(argv) {
     if (typeof argv.user === 'string') {
-      notesInstance.listNotes(argv.user);
+      console.log(notesInstance.listNotes(argv.user));
     }
   },
 });
+
 yargs.parse();
