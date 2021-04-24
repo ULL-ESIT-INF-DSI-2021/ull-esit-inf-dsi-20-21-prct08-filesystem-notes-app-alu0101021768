@@ -23,7 +23,7 @@ export class Notes {
    * class and creates it if doesn't exist
    * @returns Returns a Notes instance
    */
-  public static getUserNotesInstance(): Notes {
+  public static getNotesInstance(): Notes {
     if (!Notes.NotesInstance) {
       Notes.NotesInstance = new Notes();
     }
@@ -93,15 +93,26 @@ export class Notes {
    * @returns Returns a string with the result of modifying the note,
    * or an error
    */
-  public modifyNote(user: string, title: string, body: string, color: string) {
-    const data =
-      `{ "title": "${title}", "body": "${body}", "color": "${color}" }`;
+  public modifyNote(user: string, title: string, body?: string,
+      color?: string) {
     const dir = this.getRoute(user);
     const fileRoute = dir + `${title}`;
+    const fileData = readFileSync(fileRoute);
+    const dataToJson = JSON.parse(fileData.toString());
     if (!existsSync(fileRoute)) {
       return chalk.red("Note not found!");
       process.exit(-1);
     }
+    let newBody = body;
+    let newColor = color;
+    if (body === undefined) {
+      newBody = dataToJson.body;
+    }
+    if (color === undefined) {
+      newColor = dataToJson.color;
+    }
+    const data =
+      `{ "title": "${title}", "body": "${newBody}", "color": "${newColor}" }`;
     writeFileSync(fileRoute, data);
     return "Note modified succesfully!";
   }

@@ -6,7 +6,7 @@ import {Notes} from './notes';
 /**
  * @description Notes instance, used to work with all the notes
  */
-const notesInstance = Notes.getUserNotesInstance();
+const notesInstance = Notes.getNotesInstance();
 
 /**
  * @description Yargs command snippet for the add option. This command expects
