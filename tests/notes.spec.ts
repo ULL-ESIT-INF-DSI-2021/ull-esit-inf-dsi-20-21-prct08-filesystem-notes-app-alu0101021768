@@ -5,6 +5,11 @@ import {Notes} from '../src/notes';
 const notesInstance = Notes.getNotesInstance();
 
 describe('Notes class tests', () => {
+  describe('Notes getter function tests', () => {
+    it('Notes.getNotesInstance() should be an object', () => {
+      expect(Notes.getNotesInstance()).to.be.an('object');
+    });
+  });
   describe('addNote function tests', () => {
     it(`notesInstance.addNote('danae',
           'Red note',
@@ -79,6 +84,18 @@ describe('Notes class tests', () => {
      should equal "Your notes\u001b[31m\u001b[39m\n\u001b[31mRed note\u001b[39m"`, () => {
       expect(notesInstance.listNotes('nestor'))
           .to.equal("Your notes\u001b[31m\u001b[39m\n\u001b[31mRed note\u001b[39m");
+    });
+  });
+  describe('readNote function tests', () => {
+    it(`notesInstance.readNote('not-nestor', 'Red note')
+    should equal "Your notes"`, () => {
+      expect(notesInstance.readNote('not-nestor', 'Red note'))
+        .to.equal("\u001b[31mNote not found!\u001b[39m");
+    });
+    it(`notesInstance.readNote('nestor', 'Red note')
+     should equal "Red note\n\u001b[31mThis is a red note\u001b[39m"`, () => {
+      expect(notesInstance.readNote('nestor', 'Red note'))
+          .to.equal("Red note\n\u001b[31mThis is a red note\u001b[39m");
     });
   });
 });
