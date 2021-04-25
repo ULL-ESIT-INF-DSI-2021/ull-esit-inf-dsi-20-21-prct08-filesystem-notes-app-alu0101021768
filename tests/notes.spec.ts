@@ -19,7 +19,7 @@ describe('Notes class tests', () => {
           'Red note',
           'This is danae note and it is red',
           'Red')).to.equal("New note added!");
-      notesInstance.removeNote('danae', 'Red note');
+      expect(notesInstance.removeNote('danae', 'Red note')).to.equal("Note removed!");
     });
     it(`notesInstance.addNote('not-nestor',
           'Blue note',
