@@ -102,3 +102,37 @@ Luego de esto, pillo la ruta a la carpeta del usuario, la cual se crea si no exi
 
 #### Leer notas
 
+Lo primero que realizo para leer las notas de un usuario, es conseguir la ruta a su directorio, y haciendo uso de ```readdirSync``` puedo definir una callback, para plantear que es lo que quiero hacer con cada fichero que hay dentro del directorio, con lo que en este caso simplemente uso ````readFileSync``` para guardar el contenido de cada fichero que voy recorriendo y luego parseo a objeto el contenido mediante el uso de ```JSON.parse(data.toString())``` porque habíamos metido la información formateada de manera que ahora podremos extraerla como un objeto.
+
+Con estos datos ya simplemente queda poner lo que se mostrará por pantalla y gestionar los colores de cada título.
+
+#### Modificar notas
+
+Para modificar notas opero igual que al añadirlas, pero con el extra de que en este caso, los parámetros del cuerpo y el color de la nota son opcionales, y compruebo si son ```undefined``` para en ese caso dejar los contenidos que tenía la nota previamente, pero si se sobreescribe alguno de estos campos, simplemente se actualiza.
+
+#### Eliminar notas
+
+Para eliminar notas simplemente comprobamos que exista la nota que se quiere eliminar, en cuyo caso se eliminará y si no se mostrará un mensaje de error.
+
+#### Leer notas
+
+Para leer una nota, se accede al directorio del usuario y a la nota concreta, si no existe, se muestra un error y si por lo contrario la nota existe, se cogen los datos de la misma, se parsean a objeto y de esta manera puedo formatear el texto con el color correspondiente para mostrarlo como se espera.
+
+## Problemas durante el desarrollo
+
+He tenido bastante problemas con el desarrollo, sobre todo en la parte relativa a las Github Actions, ya que al parecer las funciones del filesystem de node hacen caer la mayor parte de mis github actions, no dejándolas correr, al menos en las relativas a los tests.
+
+Lo que he realizado para que al menos puedan correr el resto de acciones de github, ha sido tratar de que funcionaran los tests en al menos una de las versiones de node, que parecía no tirarme ningún stack de errores, pero sin embargo procesaba los tests de manera distinta que mi versión de node, ya que los tests en mi máquina iban, pero si quería que fuera en alguna de las versiones de node que corrían en la Github Action de Node.js pues dejarían de funcionarme en mi máquina, pero así lo hize para que al menos puedan ir el coverage y el sonar cloud.
+
+![Tests](img/tests.png)
+
+Aparentemente, la función de la que más se quejan las máquinas que corren los tests es de la ```rmSync```, aunque no entiendo por qué sucede esto.
+Adjunto la pila de errores que me devuelve para que se haga una idea de lo que comento: 
+
+![Github action errors](img/error.png)
+
+Sinceramente, he dedicado muchas horas a tratar de solventar este problema pero no lo he conseguido, si usted sabe a que se debe, me gustaría que me lo hiciera saber, ya que tengo curiosidad de a que se podría deber y si es fallo mío o no.
+
+## Conclusiones
+
+He aprendido bastante a trabajar con el sistema de archivos de node de manera síncrona y me ha parecido bastante fácil y cómodo de usar, así como también me han parecido bastante interesantes los paquetes utilizados en el desarrollo como son ```yargs``` y ```chalk```, tanto como para posiblemente incluirlos en algún futuro proyecto que me requiera de procesar comandos de esta manera mediante terminal, ya que facilitan bastante el proceso.
