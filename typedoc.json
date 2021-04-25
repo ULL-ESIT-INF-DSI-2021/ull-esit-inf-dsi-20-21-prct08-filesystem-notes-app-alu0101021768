@@ -1,6 +1,8 @@
 {
   "entryPoints": [
-    "./src/file.ts"
+    "./src/app.ts",
+    "./src/notes.ts",
+    "./src/helpers.ts"
   ],
   "out": "./docs"
 }
