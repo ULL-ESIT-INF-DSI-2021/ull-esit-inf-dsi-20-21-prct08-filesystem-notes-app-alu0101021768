@@ -1,6 +1,5 @@
 import * as yargs from 'yargs';
 import * as chalk from 'chalk';
-import {noteInterface} from './helpers';
 import {Notes} from './notes';
 
 /**
@@ -39,20 +38,16 @@ yargs.command({
     },
   },
   handler(argv) {
-    if (typeof argv.title === 'string') {
-      // Required logic to add a new note
-      const newNote: noteInterface = {
-        user: argv.user as string,
-        title: argv.title as string,
-        body: argv.body as string,
-        color: argv.color as string,
-      };
+    if (typeof argv.title === 'string' && 
+      typeof argv.user === 'string' && 
+      typeof argv.body === 'string' &&
+      typeof argv.color === 'string') {
 
       const result = chalk.green(notesInstance.addNote(
-          newNote.user,
-          newNote.title,
-          newNote.body,
-          newNote.color));
+          argv.user,
+          argv.title,
+          argv.body,
+          argv.color));
       console.log(result);
     }
   },
@@ -117,20 +112,16 @@ yargs.command({
     },
   },
   handler(argv) {
-    if (typeof argv.title === 'string') {
-      // Required logic to add a new note
-      const newNote: noteInterface = {
-        user: argv.user as string,
-        title: argv.title as string,
-        body: argv.body as string,
-        color: argv.color as string,
-      };
+    if (typeof argv.title === 'string' && 
+      typeof argv.user === 'string' && 
+      typeof argv.body === 'string' &&
+      typeof argv.color === 'string') {
 
       const result = chalk.green(notesInstance.modifyNote(
-          newNote.user,
-          newNote.title,
-          newNote.body,
-          newNote.color));
+          argv.user,
+          argv.title,
+          argv.body,
+          argv.color));
       console.log(result);
     }
   },

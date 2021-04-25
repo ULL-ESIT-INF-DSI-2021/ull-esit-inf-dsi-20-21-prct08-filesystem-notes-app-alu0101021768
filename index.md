@@ -58,16 +58,6 @@ Otro detalle destacable dentro de esta parte del código cliente sería el como 
 
 ```typescript
 /**
- * @description Interface used to parse the arguments received from the yargs
- * commands
- */
-export interface noteInterface {
-  user: string,
-  title: string,
-  body: string,
-  color: string
-}
-/**
  * @description Object used to manage the colors that i will use with chalk
  */
 export const ColorStruct = {
@@ -78,9 +68,7 @@ export const ColorStruct = {
 };
 ```
 
-Como podemos observar, utilizo una interfaz que me permite asegurar el tipo de dato de los diferentes datos recibidos, para así poder pasarlos a las funciones de la clase ```Notes``` de manera limpia y sin ningún tipo de error de compilador.
-
-Por otro lado, he creado un objeto definiendo como propiedades los colores y como valores los propios valores de cada uno de los colores indicados, para de esta manera facilitarme la tarea de distinguir los colores de cada nota y añadirlo sin complicaciones al texto correspondiente.
+Como podemos observar, he creado un objeto definiendo como propiedades los colores y como valores los propios valores de cada uno de los colores indicados, para de esta manera facilitarme la tarea de distinguir los colores de cada nota y añadirlo sin complicaciones al texto correspondiente.
 
 Por último, en lo referente a este archivo solo queda hacer la llamada al ```yargs.parse()``` para que procese todo aquel comando que se ejecute en la terminal y llame a las funciones necesarias que realizarán sus respectivas operaciones.
 

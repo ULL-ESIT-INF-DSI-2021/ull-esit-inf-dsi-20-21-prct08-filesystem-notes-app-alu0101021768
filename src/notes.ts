@@ -7,6 +7,7 @@ import {readFileSync} from 'fs';
 import {rmSync} from 'fs';
 import {ColorStruct} from './helpers';
 
+const noteNotFound = "Note not found!";
 /**
  * @description Class Notes that represents multiple operations working with
  * the node filesystem utilities to create, modify, remove, read and list notes
@@ -99,7 +100,7 @@ export class Notes {
     const fileData = readFileSync(fileRoute);
     const dataToJson = JSON.parse(fileData.toString());
     if (!existsSync(fileRoute)) {
-      return chalk.red("Note not found!");
+      return chalk.red(noteNotFound);
     }
     let newBody = body;
     let newColor = color;
@@ -125,7 +126,7 @@ export class Notes {
     const dir = this.getRoute(user);
     const fileRoute = dir + `${title}`;
     if (!existsSync(fileRoute)) {
-      return chalk.red("Note not found!");
+      return chalk.red(noteNotFound);
     }
     rmSync(fileRoute);
     return "Note removed!";
@@ -140,7 +141,7 @@ export class Notes {
     const dir = this.getRoute(user);
     const fileRoute = dir + `${title}`;
     if (!existsSync(fileRoute)) {
-      return chalk.red("Note not found!");
+      return chalk.red(noteNotFound);
     }
     const fileData = readFileSync(fileRoute);
     const dataToJson = JSON.parse(fileData.toString());
