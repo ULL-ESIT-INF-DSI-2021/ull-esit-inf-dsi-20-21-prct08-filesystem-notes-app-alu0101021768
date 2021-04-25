@@ -68,7 +68,8 @@ export const ColorStruct = {
 };
 ```
 
-Como podemos observar, he creado un objeto definiendo como propiedades los colores y como valores los propios valores de cada uno de los colores indicados, para de esta manera facilitarme la tarea de distinguir los colores de cada nota y añadirlo sin complicaciones al texto correspondiente.
+Como podemos observar, he creado un objeto definiendo como propiedades los colores y como valores los propios valores de cada uno de los colores indicados, para de esta manera facilitarme la tarea de distinguir los colores de cada nota y añadirlo sin complicaciones al texto correspondiente. 
+Si nos fijamos, en este caso trato los valores de los colores empezando por mayúscula al contrario que en el ejemplo de clase, porque así me parece más elegante.
 
 Por último, en lo referente a este archivo solo queda hacer la llamada al ```yargs.parse()``` para que procese todo aquel comando que se ejecute en la terminal y llame a las funciones necesarias que realizarán sus respectivas operaciones.
 
