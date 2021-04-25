@@ -80,24 +80,24 @@ describe('Notes class tests', () => {
     it(`notesInstance.listNotes('not-nestor') 
     should equal "Your notes\nBlue note"`, () => {
       expect(notesInstance.listNotes('not-nestor'))
-        .to.equal("Your notes\u001b[34m\u001b[39m\n\u001b[34mBlue note\u001b[39m");
+        .to.equal("Your notes\nBlue note");
     });
     it(`notesInstance.listNotes('nestor')
      should equal "Your notes\nRed note"`, () => {
       expect(notesInstance.listNotes('nestor'))
-          .to.equal("Your notes\u001b[31m\u001b[39m\n\u001b[31mRed note\u001b[39m");
+          .to.equal("Your notes\nRed note");
     });
   });
   describe('readNote function tests', () => {
     it(`notesInstance.readNote('not-nestor', 'Red note')
     should equal "Note not found!"`, () => {
       expect(notesInstance.readNote('not-nestor', 'Red note'))
-        .to.equal("\u001b[31mNote not found!\u001b[39m");
+        .to.equal("Note not found!");
     });
     it(`notesInstance.readNote('nestor', 'Red note')
      should equal "Red note\nThis is a red note"`, () => {
       expect(notesInstance.readNote('nestor', 'Red note'))
-          .to.equal("Red note\n\u001b[31mThis is a red note\u001b[39m");
+          .to.eql("Red note\nThis is a red note");
     });
   });
 });
