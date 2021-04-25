@@ -77,7 +77,6 @@ export class Notes {
     const fileRoute = dir + `${title}`;
     if (existsSync(fileRoute)) {
       return chalk.red("Note title taken!");
-      process.exit(-1);
     }
     writeFileSync(fileRoute, data);
     return "New note added!";
@@ -101,7 +100,6 @@ export class Notes {
     const dataToJson = JSON.parse(fileData.toString());
     if (!existsSync(fileRoute)) {
       return chalk.red("Note not found!");
-      process.exit(-1);
     }
     let newBody = body;
     let newColor = color;
@@ -128,7 +126,6 @@ export class Notes {
     const fileRoute = dir + `${title}`;
     if (!existsSync(fileRoute)) {
       return chalk.red("Note not found!");
-      process.exit(-1);
     }
     rmSync(fileRoute);
     return "Note removed!";
@@ -144,7 +141,6 @@ export class Notes {
     const fileRoute = dir + `${title}`;
     if (!existsSync(fileRoute)) {
       return chalk.red("Note not found!");
-      process.exit(-1);
     }
     const fileData = readFileSync(fileRoute);
     const dataToJson = JSON.parse(fileData.toString());
