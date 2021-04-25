@@ -1,6 +1,6 @@
 import * as yargs from 'yargs';
 import * as chalk from 'chalk';
-import {note} from './helpers';
+import {noteInterface} from './helpers';
 import {Notes} from './notes';
 
 /**
@@ -41,7 +41,7 @@ yargs.command({
   handler(argv) {
     if (typeof argv.title === 'string') {
       // Required logic to add a new note
-      const newNote: note = {
+      const newNote: noteInterface = {
         user: argv.user as string,
         title: argv.title as string,
         body: argv.body as string,
@@ -119,7 +119,7 @@ yargs.command({
   handler(argv) {
     if (typeof argv.title === 'string') {
       // Required logic to add a new note
-      const newNote: note = {
+      const newNote: noteInterface = {
         user: argv.user as string,
         title: argv.title as string,
         body: argv.body as string,

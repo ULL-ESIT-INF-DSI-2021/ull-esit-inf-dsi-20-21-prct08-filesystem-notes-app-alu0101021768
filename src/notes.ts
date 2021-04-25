@@ -5,7 +5,7 @@ import {writeFileSync} from 'fs';
 import {readdirSync} from 'fs';
 import {readFileSync} from 'fs';
 import {rmSync} from 'fs';
-import {color} from './helpers';
+import {ColorStruct} from './helpers';
 
 /**
  * @description Class Notes that represents multiple operations working with
@@ -41,16 +41,16 @@ export class Notes {
       const fileData = readFileSync(dir + file);
       const dataToJson = JSON.parse(fileData.toString());
       switch (dataToJson.color) {
-        case color.blue:
+        case ColorStruct.blue:
           list += chalk.blue("\n" + dataToJson.title);
           break;
-        case color.red:
+        case ColorStruct.red:
           list += chalk.red("\n" + dataToJson.title);
           break;
-        case color.yellow:
+        case ColorStruct.yellow:
           list += chalk.yellow("\n" + dataToJson.title);
           break;
-        case color.green:
+        case ColorStruct.green:
           list += chalk.green("\n" + dataToJson.title);
           break;
         default:
@@ -146,16 +146,16 @@ export class Notes {
     const dataToJson = JSON.parse(fileData.toString());
     let result = dataToJson.title + "\n";
     switch (dataToJson.color) {
-      case color.blue:
+      case ColorStruct.blue:
         result += chalk.blue(dataToJson.body);
         break;
-      case color.red:
+      case ColorStruct.red:
         result += chalk.red(dataToJson.body);
         break;
-      case color.yellow:
+      case ColorStruct.yellow:
         result += chalk.yellow(dataToJson.body);
         break;
-      case color.green:
+      case ColorStruct.green:
         result += chalk.green(dataToJson.body);
         break;
       default:
