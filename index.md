@@ -123,6 +123,7 @@ Para leer una nota, se accede al directorio del usuario y a la nota concreta, si
 He tenido bastante problemas con el desarrollo, sobre todo en la parte relativa a las Github Actions, ya que al parecer las funciones del filesystem de node hacen caer la mayor parte de mis github actions, no dejándolas correr, al menos en las relativas a los tests.
 
 Lo que he realizado para que al menos puedan correr el resto de acciones de github, ha sido tratar de que funcionaran los tests en al menos una de las versiones de node, que parecía no tirarme ningún stack de errores, pero sin embargo procesaba los tests de manera distinta que mi versión de node, ya que los tests en mi máquina iban, pero si quería que fuera en alguna de las versiones de node que corrían en la Github Action de Node.js pues dejarían de funcionarme en mi máquina, pero así lo hize para que al menos puedan ir el coverage y el sonar cloud.
+También modifiqué la matriz de versiones del tests.yml para que solo contuviera la versión 15 que es la que me pasa los tests sin dar errores extraños.
 
 ![Tests](img/tests.png)
 
