@@ -7,6 +7,10 @@ import {readFileSync} from 'fs';
 import {rmSync} from 'fs';
 import {ColorStruct} from './helpers';
 
+/**
+ * @description Const used to store a repeated message
+ * and not have to write it everytime it's needed
+ */
 const noteNotFound = "Note not found!";
 /**
  * @description Class Notes that represents multiple operations working with
@@ -18,7 +22,9 @@ export class Notes {
   /**
    * @description Class Notes constructor, in this case, it does nothing
    */
-  constructor() {}
+  constructor() {
+    // This is intentional
+  }
   /**
    * @description Static getter method that returns the instance of the notes
    * class and creates it if doesn't exist
