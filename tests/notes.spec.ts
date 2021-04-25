@@ -29,26 +29,27 @@ describe('Notes class tests', () => {
           'Blue note',
           'This is not-nestor note and it is blue',
           'Blue')).to.equal("New note added!");
-      notesInstance.removeNote('not-nestor', 'Blue note');
+
     });
+    notesInstance.removeNote('not-nestor', 'Blue note');
   });
   describe('removeNote function tests', () => {
-    it(`notesInstance.removeNote('danae', 'Red note') 
-    should equal "Note removed!"`, () => {
-      notesInstance.addNote('danae',
+    notesInstance.addNote('danae',
           'Red note',
           'This is danae note and it is red',
           'Red');
+    it(`notesInstance.removeNote('danae', 'Red note') 
+    should equal "Note removed!"`, () => {
       expect(notesInstance.removeNote('danae', 'Red note'))
           .to.equal("Note removed!");
       ;
     });
-    it(`notesInstance.removeNote('not-nestor', 'Blue note')
-     should equal "Note removed!"`, () => {
-      notesInstance.addNote('not-nestor',
+    notesInstance.addNote('not-nestor',
           'Blue note',
           'This is not-nestor note and it is blue',
           'Blue');
+    it(`notesInstance.removeNote('not-nestor', 'Blue note')
+     should equal "Note removed!"`, () => {
       expect(notesInstance.removeNote('not-nestor', 'Blue note'))
           .to.equal("Note removed!");
     });
@@ -62,8 +63,8 @@ describe('Notes class tests', () => {
           'Red');
       expect(notesInstance.modifyNote('danae', 'Red note',
           'This is a red note')).to.equal("Note modified succesfully!");
-      notesInstance.removeNote('danae', 'Red note');
     });
+    notesInstance.removeNote('danae', 'Red note');
     it(`notesInstance.modifyNote('not-nestor', 'Blue note')
      should equal "Note modified succesfully!"`, () => {
       notesInstance.addNote('not-nestor',
@@ -72,13 +73,14 @@ describe('Notes class tests', () => {
           'Blue');
       expect(notesInstance.modifyNote('not-nestor', 'Blue note'))
           .to.equal("Note modified succesfully!");
-      notesInstance.removeNote('not-nestor', 'Blue note');
     });
+    notesInstance.removeNote('not-nestor', 'Blue note');
   });
   describe('listNotes function tests', () => {
     it(`notesInstance.listNotes('not-nestor') 
     should equal "Your notes"`, () => {
-      expect(notesInstance.listNotes('not-nestor')).to.equal("Your notes");
+      expect(notesInstance.listNotes('not-nestor'))
+        .to.equal("Your notes\u001b[34m\u001b[39m\n\u001b[34mBlue note\u001b[39m");
     });
     it(`notesInstance.listNotes('nestor')
      should equal "Your notes\u001b[31m\u001b[39m\n\u001b[31mRed note\u001b[39m"`, () => {
