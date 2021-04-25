@@ -54,7 +54,7 @@ De resto solo queda trabajar con el handler para indicar que acciones queremos q
 
 Con el resto de comandos funciona igual, lo que difieren son los argumentos esperados en cada caso, ya que por ejemplo en la acción de modificar, sólo son obligatorios el nombre del usuario y el título de la nota, pero el resto de campos son opcionales, ya que el usuario es el que decide si quiere cambiar el cuerpo o el color de la nota si así lo desea.
 
-Otro detalle destacable dentro de esta parte del código cliente sería el como parseo los datos que se guardan dentro de ```argv``` para pasarlos a los métodos sin problemas, para lo cual me ayudo de un archivo aparte llamado ````helpers.ts``` donde tengo planteadas las siguientes estructuras de datos: 
+Otro detalle destacable dentro de esta parte del código cliente sería el como parseo los datos que se guardan dentro de ```argv``` para pasarlos a los métodos sin problemas, para lo cual me ayudo de un archivo aparte llamado ```helpers.ts``` donde tengo planteadas las siguientes estructuras de datos: 
 
 ```typescript
 /**
@@ -98,11 +98,11 @@ Respecto de las operaciones, las cuales son añadir, modificar, eliminar, leer y
 
 Para añadir notas requerimos de todos los parámetros (usuario, título, cuerpo y color de la nota), ya que con ellos creo un string formateado como si fuera un JSON para que cuando queramos leer del fichero, podamos hacerlo de manera cómoda.
 
-Luego de esto, pillo la ruta a la carpeta del usuario, la cual se crea si no existe aún, y luego compruebo que no exista ya una nota con el mismo título para el mismo usuario, ya que en dicho caso mostraremos un error, y si no es así, simplemente creamos la nota mediante el uso del método ````writeFileSync``` y devolvemos un mensaje de éxito.
+Luego de esto, pillo la ruta a la carpeta del usuario, la cual se crea si no existe aún, y luego compruebo que no exista ya una nota con el mismo título para el mismo usuario, ya que en dicho caso mostraremos un error, y si no es así, simplemente creamos la nota mediante el uso del método ```writeFileSync``` y devolvemos un mensaje de éxito.
 
 #### Leer notas
 
-Lo primero que realizo para leer las notas de un usuario, es conseguir la ruta a su directorio, y haciendo uso de ```readdirSync``` puedo definir una callback, para plantear que es lo que quiero hacer con cada fichero que hay dentro del directorio, con lo que en este caso simplemente uso ````readFileSync``` para guardar el contenido de cada fichero que voy recorriendo y luego parseo a objeto el contenido mediante el uso de ```JSON.parse(data.toString())``` porque habíamos metido la información formateada de manera que ahora podremos extraerla como un objeto.
+Lo primero que realizo para leer las notas de un usuario, es conseguir la ruta a su directorio, y haciendo uso de ```readdirSync``` puedo definir una callback, para plantear que es lo que quiero hacer con cada fichero que hay dentro del directorio, con lo que en este caso simplemente uso ```readFileSync``` para guardar el contenido de cada fichero que voy recorriendo y luego parseo a objeto el contenido mediante el uso de ```JSON.parse(data.toString())``` porque habíamos metido la información formateada de manera que ahora podremos extraerla como un objeto.
 
 Con estos datos ya simplemente queda poner lo que se mostrará por pantalla y gestionar los colores de cada título.
 
@@ -123,7 +123,7 @@ Para leer una nota, se accede al directorio del usuario y a la nota concreta, si
 He tenido bastante problemas con el desarrollo, sobre todo en la parte relativa a las Github Actions, ya que al parecer las funciones del filesystem de node hacen caer la mayor parte de mis github actions, no dejándolas correr, al menos en las relativas a los tests.
 
 Lo que he realizado para que al menos puedan correr el resto de acciones de github, ha sido tratar de que funcionaran los tests en al menos una de las versiones de node, que parecía no tirarme ningún stack de errores, pero sin embargo procesaba los tests de manera distinta que mi versión de node, ya que los tests en mi máquina iban, pero si quería que fuera en alguna de las versiones de node que corrían en la Github Action de Node.js pues dejarían de funcionarme en mi máquina, pero así lo hize para que al menos puedan ir el coverage y el sonar cloud.
-También modifiqué la matriz de versiones del tests.yml para que solo contuviera la versión 15 que es la que me pasa los tests sin dar errores extraños.
+También modifiqué la matriz de versiones del tests.yml para que solo contuviera la versión 15 que es la que me pasa los tests sin dar errores extraños y así pasen correctamente todas las acciones.
 
 ![Tests](img/tests.png)
 
@@ -137,3 +137,9 @@ Sinceramente, he dedicado muchas horas a tratar de solventar este problema pero 
 ## Conclusiones
 
 He aprendido bastante a trabajar con el sistema de archivos de node de manera síncrona y me ha parecido bastante fácil y cómodo de usar, así como también me han parecido bastante interesantes los paquetes utilizados en el desarrollo como son ```yargs``` y ```chalk```, tanto como para posiblemente incluirlos en algún futuro proyecto que me requiera de procesar comandos de esta manera mediante terminal, ya que facilitan bastante el proceso.
+
+
+- [Enlace al informe con la explicación de las resoluciones](https://ull-esit-inf-dsi-2021.github.io/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101021768/)
+- [Enlace al código fuente en typescript](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101021768/tree/main/src)
+- [Enlace a la documentación](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101021768/tree/main/docs)
+- [Enlace a los tests](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-alu0101021768/tree/main/tests)
